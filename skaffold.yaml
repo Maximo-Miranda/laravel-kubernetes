@@ -1,0 +1,15 @@
+apiVersion: skaffold/v2beta10
+kind: Config
+build:
+  artifacts:
+    - image: registry.digitalocean.com/hero7tech/lhk-laravel-app
+  local:
+    useDockerCLI: false
+    useBuildkit: false
+profiles:
+  - name: production
+    deploy:
+      kustomize:
+        paths:
+          - k8s/production
+

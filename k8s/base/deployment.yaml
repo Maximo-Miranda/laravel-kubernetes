@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: http
+spec:
+  selector: {}
+  template:
+    spec:
+      containers:
+        - name: http
+          image: http-image
+          ports:
+            - protocol: TCP
+              name: http
+              containerPort: 80
+          resources:
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+            requests:
+              memory: "500Mi"
+              cpu: "250m"
+          envFrom:
+            - configMapRef:
+                name: configmap-envs
+            - secretRef:
+                name: secrets-envs
