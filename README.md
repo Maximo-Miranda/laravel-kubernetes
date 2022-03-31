@@ -1,11 +1,11 @@
 ## Laravel + Kubernetes
 
-Crear namespaces
+### Crear namespaces
 
 - kubectl create namespace application-services
 - kubectl create namespace application-storage
 
-Instalar bases de datos
+### Instalar bases de datos
 
 helm repo add bitnami https://charts.bitnami.com/bitnami
 
@@ -88,3 +88,8 @@ To connect to your database from outside the cluster execute the following comma
 
     kubectl port-forward --namespace application-storage svc/redis-master : &
     REDISCLI_AUTH="$REDIS_PASSWORD" redis-cli -h 127.0.0.1 -p
+
+### Personalizar las variables de entornos en el archivo kustomization.yaml en el perfil production
+
+En esta seccion es requerido mapear los respectivos datos de cofiguracion acorde a la informacion proprcionada
+para accesos a bases de datos (postgres/mysql y redis)
